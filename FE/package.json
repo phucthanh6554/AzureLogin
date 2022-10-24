@@ -1,0 +1,24 @@
+{
+  "name": "azurelogin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ./ --port 4000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phucthanh6554/AzureLogin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/phucthanh6554/AzureLogin/issues"
+  },
+  "homepage": "https://github.com/phucthanh6554/AzureLogin#readme",
+  "dependencies": {
+    "http-server": "^14.1.1",
+    "live-server": "^1.2.2"
+  }
+}

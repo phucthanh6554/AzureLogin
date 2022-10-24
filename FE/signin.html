@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="info"></h1>
+</body>
+</html>
+
+<script>
+    function getFragment(cname) {
+      let name = cname + "=";
+      let urlFragment = location.href.substr(location.href.indexOf('#') + 1)
+      let ca = urlFragment.split('&');
+      for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+          c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+          return c.substring(name.length, c.length);
+        }
+      }
+      return "";
+    }
+
+    let token = getFragment('access_token');
+    console.log(token);
+        if(token != null && token != ''){
+            fetch('http://localhost:5000/account/LoginAzure', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({AccessToken: token})
+            })
+            .then(response => {
+                if(response.status == 200)
+                    return response.json()
+
+                throw 'Something went wrong'
+            })
+            .then(response => {
+                document.getElementById('info').innerText = 'Login successfully';
+                alert('Login success')
+            })
+            .catch(err => {
+                console.log(err);
+                alert('Login failed')
+            })
+        }
+</script>

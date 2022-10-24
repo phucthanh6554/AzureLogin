@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Please Login with Microsoft account</h1>
+    <button id="login-btn">Sign in with Microsoft</button>
+</body>
+</html>
+
+<script id="load-msal" src="https://alcdn.msauth.net/browser/2.15.0/js/msal-browser.js" integrity="sha384-dFzMiVGB5HpWZ+5w5VSif6jhWfNeplSw9ACYmQKZcY2azuT9kCxVWVI9HyfGdkHV"
+crossorigin="anonymous"></script>
+
+<script>    
+    const azureAdConfig = {
+        Domain: "phucnguyen6554outlookcom.onmicrosoft.com",
+        ClientId: "7824725d-2a62-4bf6-9897-35df1b873f2e",
+        RedirectUrl: "http://localhost:4000/signin.html",
+    }
+
+    // Redirect to Microsoft login page
+    document.getElementById('login-btn').onclick = function(){
+        window.location.href = `https://login.microsoftonline.com/${azureAdConfig.Domain}/oauth2/v2.0/authorize?nonce=678910&client_id=${azureAdConfig.ClientId}&response_type=token+id_token&redirect_uri=${azureAdConfig.RedirectUrl}&scope=user.read+openid+profile+email&response_mode=fragment&state=12345`;
+    }
+</script>
